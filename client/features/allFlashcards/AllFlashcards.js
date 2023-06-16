@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAllFlashcards } from './AllFlashcardsSlice';
+import './woooweeflashcards.css'
+import { fetchAllFlashcards } from './allFlashcardsSlice';   // why is it angry here?
 
 const AllFlashcards = () => {
   const flashcards = useSelector((state) => state.flashcards.allFlashcards);

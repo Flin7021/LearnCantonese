@@ -1,10 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import authReducer from '../features/auth/authSlice';
+import allFlashcardsReducer from '../features/allFlashcards/allFlashcardsSlice';
 
 const store = configureStore({
-  reducer: { auth: authReducer },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  reducer: {
+    auth: authReducer,
+    allFlashcards: allFlashcardsReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(logger),
 });
 
 export default store;

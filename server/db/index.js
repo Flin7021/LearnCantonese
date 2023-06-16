@@ -1,14 +1,16 @@
-//this is the access point for all things database related!
+const Sequelize = require('sequelize');
+const db = require('./db');
+const User = require('./models/User');
+const FlashCard = require('./models/Flashcard')
 
-const db = require('./db')
-
-const User = require('./models/User')
-
-//associations could go here!
+// Establish associations
+User.hasMany(FlashCard);
+FlashCard.belongsTo(User);
 
 module.exports = {
   db,
   models: {
     User,
+    FlashCard,
   },
-}
+};

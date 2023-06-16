@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import authReducer from '../features/auth/authSlice';
-import allFlashcardsReducer from '../features/allFlashcards/allFlashcardsSlice';
+import allFlashcardsReducer from '../features/allFlashCards/AllFlashCards';
+
 
 const store = configureStore({
   reducer: {
@@ -14,3 +15,4 @@ const store = configureStore({
 
 export default store;
 export * from '../features/auth/authSlice';
+

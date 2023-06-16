@@ -1,37 +1,39 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllFlashcards } from '../api';
+import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const fetchAllFlashcards = createAsyncThunk(
-  'allFlashcards/fetchAllFlashcards',
+// Fetch all flashcards
+export const fetchAllFlashcards = createAsyncThunk(
+  "flashcards/fetchAll",
   async () => {
     try {
-      const response = await getAllFlashcards();
-      return response.data;
+      const { data } = await axios.get("/api/flashcards");
+      return data;
     } catch (error) {
-      throw new Error('Failed to fetch all flashcards');
+      throw new Error(error.message);
     }
   }
 );
 
-const allFlashcardsSlice = createSlice({
-  name: 'allFlashcards',
+// Slice
+export const allFlashcardsSlice = createSlice({
+  name: "flashcards",
   initialState: {
-    flashcards: [],
-    status: 'idle',
+    allFlashcards: [],
+    status: "idle",
     error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllFlashcards.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(fetchAllFlashcards.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.flashcards = action.payload;
+        state.status = "succeeded";
+        state.allFlashcards = action.payload;
       })
       .addCase(fetchAllFlashcards.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = "failed";
         state.error = action.error.message;
       });
   },

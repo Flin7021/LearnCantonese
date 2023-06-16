@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Flashcard = require('../models/Flashcard');
+const Flashcard = require('../db/models/Flashcard');
 
 // GET all flashcards
 router.get('/flashcards', async (req, res) => {

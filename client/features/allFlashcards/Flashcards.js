@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import './woooweeflashcards.css'
 import { fetchAllFlashcards } from './allFlashcardsSlice';   // why is it angry here?
 
-const AllFlashcards = () => {
-  const flashcards = useSelector((state) => state.flashcards.allFlashcards);
+const Flashcards = () => {
+  const flashcards = useSelector((state) => state.allFlashcards.allFlashcards);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,4 +34,4 @@ const AllFlashcards = () => {
   );
 };
 
-export default AllFlashcards;
+export default Flashcards;

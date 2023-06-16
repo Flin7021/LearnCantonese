@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
 import { me } from './store';
-import AllFlashcards from '../features/allFlashCards/AllFlashcards';
+import Flashcards from '../features/allFlashcards/Flashcards';
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -23,7 +23,7 @@ const AppRoutes = () => {
         {!isLoggedIn && <Route path="/login" element={<AuthForm name="login" displayName="Login" />} />}
 
         {/* Render flashcards on the home page for both guests and logged-in users */}
-        <Route path="/" element={<AllFlashcards />} />
+        <Route path="/flashcards" element={<Flashcards />} />
       </Routes>
     </div>
   );

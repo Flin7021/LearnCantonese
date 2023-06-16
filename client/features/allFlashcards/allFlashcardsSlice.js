@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Fetch all flashcards
 export const fetchAllFlashcards = createAsyncThunk(
   "flashcards/fetchAll",
   async () => {
@@ -14,7 +13,7 @@ export const fetchAllFlashcards = createAsyncThunk(
   }
 );
 
-// Slice
+
 export const allFlashcardsSlice = createSlice({
   name: "flashcards",
   initialState: {

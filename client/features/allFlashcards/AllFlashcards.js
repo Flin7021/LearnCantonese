@@ -1,29 +1,34 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAllFlashcards } from './allFlashCardsSlice';
+import { fetchAllFlashcards } from './AllFlashcardsSlice';
 
 const AllFlashcards = () => {
+  const flashcards = useSelector((state) => state.flashcards.allFlashcards);
   const dispatch = useDispatch();
-  const flashcards = useSelector((state) => state.allFlashcards.flashcards);
-  const status = useSelector((state) => state.allFlashcards.status);
-  const error = useSelector((state) => state.allFlashCards.error);
 
   useEffect(() => {
     dispatch(fetchAllFlashcards());
   }, [dispatch]);
 
-
   return (
     <div>
-      <h2>All Flashcards</h2>
-      {flashcards.map((flashcard) => (
-        <div key={flashcard.id}>
-          <p>{flashcard.phrase}</p>
-          <p>{flashcard.translation}</p>
-          <p>{flashcard.category}</p>
-          <p>{flashcard.favorite}</p>
-        </div>
-      ))}
+      <h1>Flashcards</h1>
+      <ul>
+        {flashcards.map((flashcard) => (
+          <li key={flashcard.id}>
+            <h3>{flashcard.phrase}</h3>
+            <p>
+              <strong>Translation:</strong> {flashcard.translation}
+            </p>
+            <p>
+              <strong>Category:</strong> {flashcard.category}
+            </p>
+            <p>
+              <strong>Favorite:</strong> {flashcard.favorite ? 'Yes' : 'No'}
+            </p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

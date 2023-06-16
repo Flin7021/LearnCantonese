@@ -3,7 +3,7 @@ const router = express.Router();
 const Flashcard = require('../db/models/Flashcard');
 
 // GET all flashcards
-router.get('/flashcards', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const flashcards = await Flashcard.findAll();
     res.json(flashcards);

@@ -12,7 +12,7 @@ const AllFlashcards = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="flashcards-container">
       <h1>Flashcards</h1>
       <ul>
         {flashcards.map((flashcard) => (
@@ -25,7 +25,7 @@ const AllFlashcards = () => {
               <strong>Category:</strong> {flashcard.category}
             </p>
             <p>
-              <strong>Favorite:</strong> {flashcard.favorite ? 'Yes' : 'No'}
+              {/* <strong>Favorite:</strong> {flashcard.favorite ? 'Yes' : 'No'} */}
             </p>
           </li>
         ))}

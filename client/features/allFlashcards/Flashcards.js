@@ -1,35 +1,35 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import './woooweeflashcards.css'
-import { fetchAllFlashcards } from './allFlashcardsSlice';   // why is it angry here?
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllFlashcards } from '../allFlashcards/allFlashcardsSlice';
 
 const Flashcards = () => {
-  const flashcards = useSelector((state) => state.allFlashcards.allFlashcards);
   const dispatch = useDispatch();
+  const allFlashcards = useSelector((state) => state.allFlashcards.allFlashcards);
+  const status = useSelector((state) => state.allFlashcards.status);
+  const error = useSelector((state) => state.allFlashcards.error);
 
   useEffect(() => {
     dispatch(fetchAllFlashcards());
   }, [dispatch]);
 
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (status === 'failed') {
+    return <div>Error: {error}</div>;
+  }
+
   return (
-    <div className="flashcards-container">
-      <h1>Flashcards</h1>
-      <ul>
-        {flashcards.map((flashcard) => (
-          <li key={flashcard.id}>
-            <h3>{flashcard.phrase}</h3>
-            <p>
-              <strong>Translation:</strong> {flashcard.translation}
-            </p>
-            <p>
-              <strong>Category:</strong> {flashcard.category}
-            </p>
-            <p>
-              {/* <strong>Favorite:</strong> {flashcard.favorite ? 'Yes' : 'No'} */}
-            </p>
-          </li>
-        ))}
-      </ul>
+    <div>
+      {allFlashcards.map((flashcard) => (
+        <div key={flashcard.id}>
+          <p>Phrase: {flashcard.phrase}</p>
+          <p>Translation: {flashcard.translation}</p>
+          <p>Category: {flashcard.category}</p>
+          {/* Render other flashcard details */}
+        </div>
+      ))}
     </div>
   );
 };

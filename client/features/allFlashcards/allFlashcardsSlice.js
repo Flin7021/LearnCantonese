@@ -1,18 +1,18 @@
-import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import  db  from '../../../config/firebaseConfig'; // Import your Firebase database reference
 
 export const fetchAllFlashcards = createAsyncThunk(
   "flashcards/fetchAll",
   async () => {
     try {
-      const { data } = await axios.get("/api/flashcards");
-      return data;
+      const snapshot = await db.collection('flashcards').get(); // Fetch flashcards collection from Firebase
+      const flashcards = snapshot.docs.map((doc) => doc.data()); // Extract the data from each document
+      return flashcards;
     } catch (error) {
       throw new Error(error.message);
     }
   }
 );
-
 
 export const allFlashcardsSlice = createSlice({
   name: "flashcards",

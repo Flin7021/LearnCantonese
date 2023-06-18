@@ -1,0 +1,28 @@
+.flashcard {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.flashcard .phrase {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.flashcard .category {
+  font-size: 16px;
+  color: #888;
+}
+
+.flashcard .translation {
+  font-size: 18px;
+}
+
+.flashcard .favorite {
+  font-size: 14px;
+  color: #888;
+}
+
+.flashcard .favorite.isFavorite {
+  color: red;
+}

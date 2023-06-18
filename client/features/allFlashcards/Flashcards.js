@@ -49,8 +49,9 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
-import  {db } from "../../../config/firebase";
+import { db } from "../../../config/firebase";
 import { v4 as uuidv4 } from "uuid";
+import "./flashcards.css"; // Import the CSS file
 
 const Flashcards = () => {
   const collectionRef = collection(db, "flashcards");
@@ -62,10 +63,7 @@ const Flashcards = () => {
   const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
-    const q = query(
-      collectionRef
-      // where('title', '==', 'Flashcard1')
-    );
+    const q = query(collectionRef);
 
     setLoading(true);
     const unsub = onSnapshot(q, (querySnapshot) => {
@@ -139,11 +137,13 @@ const Flashcards = () => {
       <hr />
       {loading ? <h1>Loading...</h1> : null}
       {flashcards.map((flashcard) => (
-        <div className="flashcard" key={flashcard.id}>
-          <h2>{flashcard.phrase}</h2>
-          <p>{flashcard.category}</p>
-          <p>{flashcard.translation}</p>
-          <p>{flashcard.favorite ? "Favorite" : "Not Favorite"}</p>
+        <div className="flashcard" key={uuidv4()}>
+          <h2 className="phrase">{flashcard.phrase}</h2>
+          <p className="category">{flashcard.category}</p>
+          <p className="translation">{flashcard.translation}</p>
+          <p className={`favorite ${flashcard.favorite ? "isFavorite" : ""}`}>
+            {flashcard.favorite ? "Favorite" : "Not Favorite"}
+          </p>
           <div>{/* Add delete and edit functionality if needed */}</div>
         </div>
       ))}
